@@ -15,18 +15,27 @@ block content
     nav(aria-label='Page navigation example').d-flex.justify-content-center
       ul.pagination
         if currentPage > 1
+
           li.page-item
-            a.page-link(href=`?page=${currentPage - 1}`) Previous
+            if term
+              a.page-link(href=`?term=${term}&page=${currentPage - 1}`) Previous
+            else
+              a.page-link(href=`?page=${currentPage - 1}`) Previous
 
         - var i = 1;
         while i <= pagesCount
           li.page-item
-            a.page-link(href=`?page=${i}`)= i++
+            if term
+              a.page-link(href=`?term=${term}&page=${i}`)= i++
+            else
+              a.page-link(href=`?page=${i}`)= i++
 
         if currentPage < pagesCount
           li.page-item
-            a.page-link(href=`?page=${parseInt(currentPage) + 1}`) Next
+            if term
+              a.page-link(href=`?term=${term}&page=${parseInt(currentPage) + 1}`) Next
+            else
+              a.page-link(href=`?page=${parseInt(currentPage) + 1}`) Next
 //- changing the static number system to a dynamic one based off the number we pass through it
-//- top adds a previous button once we have a current page above 1
-//- middle populates our items based off page number
-//- bottom is opposite of top
+//- forget all of that this is the new way
+//- this is a way where we can make sure our search code gets added into the url along with the page number
