@@ -102,7 +102,6 @@ describe('Pets', ()  => {
       });
     });
   });
-
   // TEST DELETE
   it('should delete a SINGLE pet on /pets/<id> DELETE', (done) => {
     var pet = new Pet(fido);
@@ -114,6 +113,16 @@ describe('Pets', ()  => {
         res.should.be.html
         done();
       });
+    });
+  });
+  // SEARCH
+  it('should search ALL pets by name on /search GET', (done) => {
+    chai.request(server)
+        .get('/search?term=norman')
+        .end((err, res) => {
+          res.should.have.status(200);
+          res.should.be.html;
+          done();
     });
   });
 });

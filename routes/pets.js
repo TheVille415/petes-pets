@@ -59,8 +59,11 @@ module.exports = (app) => {
   // the i variable means we are doing case-insensitive matching with our searching
   app.get('/search', (req, res) => {
     term = new RegExp(req.query.term, 'i')
-  
-    Pet.find({'name': term}).exec((err, pets) => {
+    // adding the name and species so we can search by either 
+    Pet.find({$or:[
+      {'name': term},
+      {'species': term}
+    ]}).exec((err, pets) => {
       res.render('pets-index', { pets: pets });
     })
   });
