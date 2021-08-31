@@ -55,4 +55,14 @@ module.exports = (app) => {
       return res.redirect('/')
     });
   });
+  // SEARCH PET
+  // the i variable means we are doing case-insensitive matching with our searching
+  app.get('/search', (req, res) => {
+    term = new RegExp(req.query.term, 'i')
+  
+    Pet.find({'name': term}).exec((err, pets) => {
+      res.render('pets-index', { pets: pets });
+    })
+  });
 }
+  
