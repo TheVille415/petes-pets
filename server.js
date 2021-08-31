@@ -11,6 +11,9 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const methodOverride = require('method-override')
 
+// favicon is an icon assiciated a website or webpage
+// logger is a default handler function which writes to your browser's console object using the appropriate logging functions
+// cookieparser will parse the Cookie header on the request and expose the cookie data as the property req.cookies and, if a secret was provided
 const app = express();
 
 const mongoose = require('mongoose');
