@@ -10,6 +10,12 @@ mongoosePaginate.paginate.options = {
   limit: 3 // how many records on each page
 };
 
+// without weights
+PetSchema.index({ name: 'text', species: 'text', favoriteFood: 'text', description: 'text' });
+
+// with weights
+PetSchema.index({ name: 'text', species: 'text', favoriteFood: 'text', description: 'text' }, {name: 'My text index', weights: {name: 10, species: 4, favoriteFood: 2, description: 1}});
+
 const PetSchema = new Schema({
   name: { type: String, required: true }
   , birthday: {type: String, required: true }
